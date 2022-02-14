@@ -7,16 +7,12 @@ let randomPermanentAddress = faker.address.secondaryAddress();
 
 describe('Task', () => {
     it('Filling in the "Text box" form', () => {
-      
-      
-        cy.visit('https://demoqa.com/text-box')
-
-      
+        cy.visit('/text-box');
+        
         cy.get('#userName').click()
         .type(randomName)
         .should('have.value', randomName);
 
-    
          cy.get('#userEmail').click()
         .type(randomEmail)
         .should('have.value', randomEmail);
