@@ -9,9 +9,7 @@ let randomPermanentAddress = faker.address.secondaryAddress();
 describe('HW 14', () => {
     it('Filling in the "Text box" form', () => {
       
-      
-        cy.visit('https://demoqa.com/text-box')
-
+        cy.visit('/text-box')
       
         cy.get('#userName').click()
         .type(randomName)
@@ -31,7 +29,7 @@ describe('HW 14', () => {
         .should('have.value', randomPermanentAddress);
 
         cy.get('#submit').click()
-   })
+   });
 
     it('Check that the entered data is correct', () => {
         cy.get('#output #name').should('include.text', randomName);
@@ -39,21 +37,14 @@ describe('HW 14', () => {
         cy.get('#output #currentAddress').should('include.text', randomCurrentAddress);
         cy.get('#output #permanentAddress').should('include.text', randomPermanentAddress);
     });
-  })
-
-  
-  
- 
+});
 
   describe('HW 15', () => {
     it('Create a new user', () => {
-      
-      
-        cy.visit('https://demoqa.com/webtables', { pageloadtimeout: 10000 })
+        cy.visit('/webtables',)
 
         cy.get('#addNewRecordButton', { timeout: 10000 }).click();
-        
-        
+             
         cy.get('#firstName').click()
         .type('Harry')
         .should('have.value', 'Harry');
@@ -80,15 +71,13 @@ describe('HW 14', () => {
         .should('have.value', 'Depaetment 001');
 
         cy.get('#submit').click()
-
-        
-    });
+    
+});
 
     it('Verify that user was added', () => {
             cy.get('.ReactTable').should('contain', 'Harry');
            
-        
- })
+});
 
     it('Edit user and check that each field is editable', () => {
         cy.get('#edit-record-4').click()
@@ -128,24 +117,23 @@ describe('HW 14', () => {
  });
 
     it('Check that all data was  edited', () => {
-        cy.get('.ReactTable').should('contain', 'Tom');
-        cy.get('.ReactTable').should('contain', 'Riddle');
-        cy.get('.ReactTable').should('contain', 'qwerty@gmail.com');
-        cy.get('.ReactTable').should('contain', '3000');
-        cy.get('.ReactTable').should('contain', '46');
-        cy.get('.ReactTable').should('contain', 'Depaetment 007')
+        cy.get('.ReactTable').and('contain', 'Tom');
+        cy.get('.ReactTable').and('contain', 'Riddle');
+        cy.get('.ReactTable').and('contain', 'qwerty@gmail.com');
+        cy.get('.ReactTable').and('contain', '3000');
+        cy.get('.ReactTable').and('contain', '46');
+        cy.get('.ReactTable').and('contain', 'Depaetment 007')
 
  });
 
     it('Delete user from the table and check that user was deleted', () => {
         cy.get('#delete-record-4 > svg').click()
         cy.get('.ReactTable').should('not.contain', 'Tom')
-    })
+    });
 
 
     it('Check searching feature', () => {
-        cy.get('#addNewRecordButton', { timeout: 10000 }).click();
-        
+        cy.get('#addNewRecordButton',).click();
         
         cy.get('#firstName').click()
         .type('Harry')
@@ -210,7 +198,7 @@ describe('HW 14', () => {
 
         cy.get('#searchBox').click()
         .clear()
-    })
+    });
 
     it('Implement sorting tests', () => {
         
@@ -220,12 +208,10 @@ describe('HW 14', () => {
        .then(tableBody => {
         let sortNamefromSite = [];
         sortNamefromSite.push(tableBody.text());
-        cy.log(sortNamefromSite)
         let sortNameHere = [];
         sortNameHere.push(tableBody.text())
-        cy.log(sortNameHere)
         expect(sortNameHere.sort()).to.eql(sortNamefromSite);
-    })
+    });
         cy.contains('Last Name').should('exist').click()
         cy.get(".rt-tbody > [role='rowgroup'] > [role='row']").find("div:nth-child(2)")
 
@@ -237,7 +223,7 @@ describe('HW 14', () => {
         sortLastNameHere.push(tableBody2.text())
         cy.log(sortLastNameHere)
         expect(sortLastNameHere.sort()).to.eql(sortLastfromSite)
-    })    
+    }); 
     
 
         cy.contains('Age').should('exist').click()
@@ -252,7 +238,7 @@ describe('HW 14', () => {
         cy.log(sortAgeHere)
         expect(sortAgeHere.sort()).to.eql(sortAgefromSite)
    
-     }) 
+     });
 
         cy.contains('Email').should('exist').click()
         cy.get(".rt-tbody > [role='rowgroup'] > [role='row']").find("div:nth-child(4)")
@@ -267,7 +253,7 @@ describe('HW 14', () => {
         expect(sortEmailHere.sort()).to.eql(sortEmailfromSite)
 
 
-    }) 
+    });
         cy.contains('Salary').should('exist').click()
         cy.get(".rt-tbody > [role='rowgroup'] > [role='row']").find("div:nth-child(5)")
 
@@ -281,7 +267,7 @@ describe('HW 14', () => {
         expect(sortSalaryHere.sort()).to.eql(sortSalaryfromSite)
 
 
-    }) 
+    }); 
         cy.contains('Department').should('exist').click()
         cy.get(".rt-tbody > [role='rowgroup'] > [role='row']").find("div:nth-child(6)")
 
@@ -295,9 +281,8 @@ describe('HW 14', () => {
         expect(sortDepartmentHere.sort()).to.eql(sortDepartmentfromSite)
 
 
-    }) 
-
+    }); 
       
-}) 
+});
      
-  })
+});
